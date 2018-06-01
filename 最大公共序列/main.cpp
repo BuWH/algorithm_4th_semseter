@@ -16,16 +16,54 @@ void read_data(std::vector<char> &A,std::vector<char> &B,std::vector<char> &C,st
 }
 
 void print_data(std::vector<char> Chars){
-    for(auto i:Chars){
-        std::cout<<i;
+    for(int i = Chars.size()-1;i >= 0;--i){
+        std::cout << Chars[i];
     }
     std::cout<<std::endl;
-    return;
+}
+
+std::vector<char> result(std::vector<char> &a,std::vector<char> &b){
+    int length[a.size()][b.size()];
+    int from[a.size()][b.size()];
+    std::vector<char> answer;
+    for(int i = 1;i < a.size();++i)
+        length[i][0] = 0;
+    for(int i = 1;i < b.size();++i)
+        length[0][i] = 0;
+    for(int i = 1;i < a.size();++i){
+        for(int j = 1;j<b.size();++j){
+            if(a[i] == b[j]){
+                length[i][j] = length[i-1][j-1] + 1;
+                from[i][j] = 1;
+            }else if(length[i-1][j] >= length[i][j-1] ){
+                length[i][j] = length[i-1][j];
+                from[i][j] = 2;
+            }else{
+                length[i][j] = length[i][j-1];
+                from[i][j] = 3;
+            }
+        }
+    }
+    int j = b.size() - 1;
+    int i = a.size() - 1 ;
+    while(i!=0 && j!=0){
+        if(from[i][j] == 1){
+            answer.push_back(a[i]);
+            i--,j--;
+        }else if(from[i][j] == 2){
+            i--;
+        }else{
+            j--;
+        }
+    }
+    return answer;
 }
 
 int main(){
-    std::vector<char> A,B,C,D;
-    read_data(A, B, C, D);
-    print_data(A);
-    print_data(B);
+    std::vector<std::vector<char>> data;
+    std::vector<char> temp;
+    data.assign(4,temp);
+    read_data(data[0], data[1], data[2], data[3]);
+    temp = result(data[0],data[1]);
+    print_data(temp);
 }
