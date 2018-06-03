@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/wenhe/Desktop/code/大二下编程/algorithm_4th_semseter/backpack_problem/main.cpp
+iostream
+-
+vector
+-
+fstream
+-
+cmath
+-
+
