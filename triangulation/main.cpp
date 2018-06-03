@@ -81,8 +81,10 @@ void triangulate(const std::vector<struct node> data) {
 }
 
 int main() {
-    std::vector<struct node> data;
-    read_data(data, "tri1.txt");
-    triangulate(data);
+    std::vector<struct node> data1, data2;
+    read_data(data1, "tri1.txt");
+    read_data(data2, "tri2.txt");
+    triangulate(data1);
+    triangulate(data2);
     return 0;
 }
